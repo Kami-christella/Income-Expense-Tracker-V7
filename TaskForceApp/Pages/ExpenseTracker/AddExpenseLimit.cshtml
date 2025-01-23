@@ -1,0 +1,50 @@
+﻿@page
+@model TaskForceApp.Pages.ExpenseTracker.AddExpenseLimitModel
+@{
+}
+<br />
+<html>
+<body>
+    <a class="btn btn-info" href="/ExpenseTracker/AllExpense">Go Back</a>
+    <h2>Add Expense Limit</h2>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>@Model.ErrorMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
+            <strong>@Model.SuccessMessage</strong>
+        </div>
+
+        <!-- Add JavaScript for redirection after displaying the message -->
+        <script>
+            setTimeout(function() {
+                window.location.href = '/ExpenseTracker/AllExpense';
+            }, 1000); // Redirect after 1 seconds
+        </script>
+    }
+
+    <form method="post">
+        <div class="form-group">
+            <label class="col-sm-3 col-form-label">Expense Limit</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="ExpenseLimit" value="@Model.AllInfo.ExpenseLimit" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="offset-sm-3 col-sm-3 d-grid" style="margin-left:30px;">
+                <button type="submit" class="btn btn-danger" style="margin-left:30px;">ADD</button>
+            </div>
+            <div class="offset-sm-3 col-sm-3 d-grid" style="margin-left:60px;">
+                <a class="btn btn-outline-primary" href="/ExpenseTracker/AllIncome" role="button">Cancel</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
